@@ -4,3 +4,14 @@ node_modules/
 *.package.json
 *.package-lock.json
 *.vscode
+.idea　　　　
+.mvn　　　　
+.iml
+mvnw
+mvnw.cmd
+logs/
+target/
+help.md
+.project
+.settings
+.classpath
