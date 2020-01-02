@@ -16,15 +16,16 @@ db.then(result => {
       let result = await login_model.findOne({ name, password });
       if (result) {
         response.redirect('https:www.baidu.com');
+        return;
       } else {
         response.send('登陆失败，用户名或密码错误');
+        return;
       }
     } catch (error) {
       console.log(error);
       response.send('网络不稳定请稍后重试');
+      return;
     }
-
-    respnse.send('ok');
   });
   //用户注册
   app.post('/register', async (request, response) => {
