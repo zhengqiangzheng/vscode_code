@@ -6,10 +6,27 @@ let app = express();
 //数据库连接成功后注册路由
 db.then(result => {
   app.use(express.urlencoded({ extended: true }));
-  app.post('/login', (request, respnse) => {
+  //登录，根据用户名密码查询数据库
+  app.post('/login', async (request, response) => {
     console.log(request.body);
+    const { name, password } = request.body;
+    //这里就不校验用户名密码了,懒~~
+    //将数据库相关密码包在trycatch中
+    try {
+      let result = await login_model.findOne({ name, password });
+      if (result) {
+        response.redirect('https:www.baidu.com');
+      } else {
+        response.send('登陆失败，用户名或密码错误');
+      }
+    } catch (error) {
+      console.log(error);
+      response.send('网络不稳定请稍后重试');
+    }
+
     respnse.send('ok');
   });
+  //用户注册
   app.post('/register', async (request, response) => {
     //1.获取用户的输入
     const { name, nick_name, password, re_password } = request.body;
@@ -50,7 +67,7 @@ db.then(result => {
       response.send('阿偶，网络不稳定，稍后重试！');
     }
   });
-  //页面
+  //页面路由
   app.get('/login', (request, respnse) => {
     respnse.sendfile(__dirname + '/public/login.html');
   });
