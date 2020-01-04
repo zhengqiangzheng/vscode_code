@@ -5,6 +5,7 @@ let { Router } = require('express');
 let businessRouter = new Router();
 //登录，根据用户名密码查询数据库
 businessRouter.post('/login', async (request, response) => {
+  debugger;
   console.log(request.body);
   const { name, password } = request.body;
   //定义正则表达式
