@@ -34,16 +34,13 @@ businessRouter.post('/login', async (request, response) => {
     let result = await login_model.findOne({ name, password });
     console.log(result);
     if (result) {
-      console.log(123);
-      response.redirect('https:www.baidu.com');
+      response.redirect(`/usercenter?username=${result.nick_name}`);
       return;
     } else {
-      console.log(123);
       errorMsg.loginErr = '登陆失败，用户名或密码错误';
       response.render('login', { errorMsg });
     }
   } catch (error) {
-    console.log(123);
     console.log(error);
     errorMsg.NetWorkErr = '网络错误请稍后重试';
     response.render('login', { errorMsg });

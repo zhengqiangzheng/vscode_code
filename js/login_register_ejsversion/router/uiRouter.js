@@ -10,4 +10,8 @@ uiRouter.get('/login', (request, response) => {
 uiRouter.get('/register', (request, response) => {
   response.render('register', { errorMsg: {} });
 });
+uiRouter.get('/usercenter', (request, response) => {
+  var {username} = request.query;
+  response.render('usercenter', { username: username });
+});
 module.exports = uiRouter;
