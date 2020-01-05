@@ -12,6 +12,7 @@ app.set('view engine', 'ejs'); //设置模板引擎
 let viewPath = resolve(__dirname, './views'); //设置模板所在目录
 app.set('views', viewPath);
 //定义一个cookie和session组合使用的配置对象
+
 app.use(
   session({
     name: 'haha', //设置cookie的name，默认值是：connect.sid
