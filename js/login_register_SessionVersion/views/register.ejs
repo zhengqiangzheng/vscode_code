@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="http://localhost:3000/register" method="post">
+      name: <input type="text" name="name" /><span class="red"
+        ><%=errorMsg.emailErr%></span
+      >
+      <br /><br />
+      nick_name:<input type="nick_name" name="nick_name" /><span class="red"
+        ><%=errorMsg.nickNameErr%></span
+      >
+      <br /><br />
+      password:<input type="password" name="password" /><span class="red"
+        ><%=errorMsg.passwordErr%></span
+      ><br /><br />
+      confirm password:<input type="password" name="re_password" /><span
+        class="red"
+        ><%=errorMsg.RepasswordErr%></span
+      >
+      <br /><br />
+      submit:<input type="submit" />
+    </form>
+  </body>
+</html>

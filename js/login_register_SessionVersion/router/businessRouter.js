@@ -26,6 +26,7 @@ businessRouter.post('/login', async (request, response) => {
   }
   console.log(JSON.stringify(errorMsg));
   if (JSON.stringify(errorMsg) !== '{}') {
+    console.log(123);
     response.render('login', { errorMsg });
     return;
   }
@@ -33,8 +34,10 @@ businessRouter.post('/login', async (request, response) => {
     let result = await login_model.findOne({ name, password });
     console.log(result);
     if (result) {
-      response.cookie('_id', result._id.toString(), { maxAge: 3 * 1000 * 10 });
+      //response.redirect(`/usercenter?username=${result.nick_name}`);
+      request.session._id = result._id;
       response.redirect('/usercenter');
+      return;
     } else {
       errorMsg.loginErr = '登陆失败，用户名或密码错误';
       response.render('login', { errorMsg });
