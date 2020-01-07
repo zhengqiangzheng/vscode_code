@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1"></button>
+    <button id="btn2"></button>
+</body>
+
+<script>
+    function sendAjax(url, method, data = {}) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState !== 4) {
+                    return
+                }
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseObj = {
+                        data: xhr.response,
+                        status: xhr.status,
+                        statustext: xhr.responseText
+                    }
+                    resolve(responseObj)
+                } else {
+                    reject(new Error('请求出错'))
+                }
+            }
+            var objkeys = Object.keys(data)
+            let urldata = objkeys.reduce((pre, now) => {
+                return pre += `${data[now]}&`
+            })
+            if (method.toLowCase() == 'get') {
+                url += urldata//请求参数在url中
+                xhr.open(method, url)
+                xhr.send();
+            } else if (method.toLowCase() == 'post') {
+                xhr.open(method, url)
+                xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+                xhr.send(urldata)//请求体
+            }
+        })
+
+    }
+</script>
+
+</html>
