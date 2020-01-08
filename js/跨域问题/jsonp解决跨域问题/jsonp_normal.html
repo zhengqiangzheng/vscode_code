@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+<body>
+    <button id="btn">点我发送jsonp请求</button>
+    <button id="btn2">点我正常请求</button>
+
+</body>
+<script>
+    let btn = document.getElementById('btn')
+    btn.onclick = function () {
+        console.log(22);
+        let sctnode = document.createElement('script')
+        window.getdata = function (arr) {
+            console.log(arr);
+        }
+        sctnode.src = 'http://localhost:3000/testjsonp?callback=getdata'
+        document.body.appendChild(sctnode)
+    }
+    $('#btn2').click(function () {
+        console.log('btn2');
+    })
+
+</script>
+
+</html>
