@@ -1,3 +1,67 @@
 .input {
   border: 3px solid yellow;
 }
+/* .show {
+  opacity: 1;
+  transition: all 1.5s ease-in;
+}
+.hide {
+  opacity: 0;
+  transition: all 1.5s ease-in;
+} */
+/* .show {
+  animation: show-item 1.5s ease-in forwards;
+}
+.hide {
+  animation: hide-item 1.5s ease-in forwards;
+}
+@keyframes hide-item {
+  0% {
+    opacity: 1;
+    color: red;
+  }
+  50% {
+    opacity: 0.5;
+    color: yellow;
+  }
+  100% {
+    opacity: 0;
+    color: beige;
+  }
+}
+@keyframes show-item {
+  0% {
+    opacity: 0;
+    color: green;
+  }
+  50% {
+    opacity: 0.5;
+    color: red;
+  }
+  100% {
+    opacity: 1;
+    color: rgb(220, 245, 238);
+  }
+} */
+.boss-text-enter {
+  opacity: 0;
+}
+.boss-text-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms;
+}
+.boss-text-enter-done {
+  opacity: 1;
+  
+}
+
+.boss-text-exit {
+  opacity: 1;
+}
+.boss-text-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
+}
+.boss-text-exit-done {
+  opacity: 0;
+}
