@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
-import { Input, Button, List } from 'antd';
 import store from './store';
 import {
   changeInputAction,
   addTaskAction,
   deleteItemAction
 } from './store/actionCreators';
+import TodoListUi from './TodoListUi';
 
 class TodoList extends Component {
   constructor(props) {
@@ -20,30 +19,14 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <div>
-        <div style={{ margin: '10px' }}>
-          <Input
-            onChange={this.ChangeInput}
-            placeholder={this.state.placeHolderValue}
-            style={{ width: '250px', marginRight: '10px', marginTop: '10px' }}
-            value={this.state.inputValue}
-          />
-          <Button type={'primary'} onClick={this.AddTask}>
-            添加任务
-          </Button>
-        </div>
-        <div style={{ margin: '10px', width: '300px' }}>
-          <List
-            dataSource={this.state.list}
-            bordered
-            renderItem={(item, index) => (
-              <List.Item onClick={this.deleteItem.bind(this, index)}>
-                {item}
-              </List.Item>
-            )}
-          />
-        </div>
-      </div>
+      <TodoListUi
+        ChangeInput={this.ChangeInput}
+        placeHolderValue={this.state.placeHolderValue}
+        inputValue={this.state.inputValue}
+        AddTask={this.AddTask}
+        list={this.state.list}
+        deleteItem={this.deleteItem}
+      />
     );
   }
   ChangeInput(e) {
