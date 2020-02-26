@@ -4,16 +4,17 @@ import {
   changeInputAction,
   addTaskAction,
   deleteItemAction,
-  getDataAction
+  getTodoList
 } from './store/actionCreators';
 import TodoListUi from './TodoListUi';
-import data from './mockjsdata';
-import Mock from 'mockjs';
-import axios from 'axios';
-//注册接口
-Mock.mock('/api/getData', {
-  data: data
-});
+
+// import data from './mockjsdata';
+// import Mock from 'mockjs';
+// import axios from 'axios';
+// //注册接口
+// Mock.mock('/api/getData', {
+//   data: data
+// });
 
 class TodoList extends Component {
   constructor(props) {
@@ -38,11 +39,11 @@ class TodoList extends Component {
     );
   }
   componentDidMount() {
-    axios.get('/api/getData').then(res => {
-      //console.log(res.data.data);
-      const action = getDataAction(res.data.data);
-      store.dispatch(action);
-    });
+    // axios.get('/api/getData').then(res => {
+    //   //console.log(res.data.data);
+    const action = getTodoList();
+    store.dispatch(action);
+    // });
   }
   ChangeInput(e) {
     console.log(e.target);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
 //纯的ui js 可以写成无状态组件节省性能
