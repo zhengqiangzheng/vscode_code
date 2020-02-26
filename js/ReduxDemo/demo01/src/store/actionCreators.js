@@ -1,4 +1,4 @@
-import { INPUT_CHANGE, ADD_TASK, DELETE_ITEM } from './actionTypes';
+import { INPUT_CHANGE, ADD_TASK, DELETE_ITEM, GET_DATA } from './actionTypes';
 export const changeInputAction = value => {
   return {
     type: INPUT_CHANGE,
@@ -15,5 +15,11 @@ export const deleteItemAction = index => {
   return {
     type: DELETE_ITEM,
     index
+  };
+};
+export const getDataAction = data => {
+  return {
+    type: GET_DATA,
+    data
   };
 };

@@ -3,9 +3,17 @@ import store from './store';
 import {
   changeInputAction,
   addTaskAction,
-  deleteItemAction
+  deleteItemAction,
+  getDataAction
 } from './store/actionCreators';
 import TodoListUi from './TodoListUi';
+import data from './mockjsdata';
+import Mock from 'mockjs';
+import axios from 'axios';
+//注册接口
+Mock.mock('/api/getData', {
+  data: data
+});
 
 class TodoList extends Component {
   constructor(props) {
@@ -28,6 +36,13 @@ class TodoList extends Component {
         deleteItem={this.deleteItem}
       />
     );
+  }
+  componentDidMount() {
+    axios.get('/api/getData').then(res => {
+      //console.log(res.data.data);
+      const action = getDataAction(res.data.data);
+      store.dispatch(action);
+    });
   }
   ChangeInput(e) {
     console.log(e.target);

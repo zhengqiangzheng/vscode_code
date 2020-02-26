@@ -1,13 +1,9 @@
-import { INPUT_CHANGE, ADD_TASK, DELETE_ITEM } from './actionTypes';
+import { INPUT_CHANGE, ADD_TASK, DELETE_ITEM, GET_DATA } from './actionTypes';
 
 const defaultState = {
   inputValue: '',
-  placeHolderValue: 'Write SomeThing',
-  list: [
-    '早上八点开晨会，分配今天任务1',
-    '早上八点开晨会，分配今天任务2',
-    '早上八点开晨会，分配今天任务3'
-  ]
+  placeHolderValue: '',
+  list: []
 };
 export default (state = defaultState, action) => {
   // console.log(state, action);
@@ -33,6 +29,14 @@ export default (state = defaultState, action) => {
     let newState = JSON.parse(JSON.stringify(state));
     // console.log(newState.list);
     newState.list.splice(action.index, 1);
+    return newState;
+  }
+  if (action.type === GET_DATA) {
+    let newState = JSON.parse(JSON.stringify(state));
+    console.log(action.data);
+    newState.list = action.data.list;
+    newState.placeHolderValue = action.data.placeHolder;
+
     return newState;
   }
   return state;
