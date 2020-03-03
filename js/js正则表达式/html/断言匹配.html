@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        今天早上吃了鸡蛋，今天早上太阳好
+    </div>
+
+</body>
+<script>
+    let reg = /早上(?=太阳)/g //if 早上的后面是太阳则匹配这个早上
+    let innerhtml = document.querySelector('div').innerHTML
+    document.querySelector('div').innerHTML = innerhtml.replace(reg, (p0) => {
+        return `<a href='http://wwwbaidu.com'>${p0}</a>`
+    })
+
+</script>
+
+</html>
