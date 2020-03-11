@@ -17,6 +17,7 @@
     "express-session": "^1.17.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.3",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "sha1": "^1.1.1"
   }
