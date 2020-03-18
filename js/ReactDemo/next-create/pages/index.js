@@ -26,6 +26,20 @@ const Home = () => (
     >
       GO to page B
     </button>
+    <br />
+    <ul>
+      <li>
+        <Link href="/breakfast?meal=1">
+          <a>点一号套餐</a>
+        </Link>
+      </li>
+
+      <li>
+        <Link href={{ query: { meal: 2 }, pathname: '/breakfast' }}>
+          <a>点二号套餐</a>
+        </Link>
+      </li>
+    </ul>
   </>
 );
 
