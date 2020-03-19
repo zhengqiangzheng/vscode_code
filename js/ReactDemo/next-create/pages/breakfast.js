@@ -1,6 +1,6 @@
 import { withRouter } from 'next/router';
 import Link from 'next/link';
-import data from './mock/data';
+import data from '../Mock/data';
 import axios from 'axios';
 import Mock from 'mockjs';
 
