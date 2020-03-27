@@ -8,6 +8,7 @@ import ReactMarkDown from 'react-markdown';
 import MarnNavBar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import '../static/style/pages/detailed.css';
+import axios from 'axios';
 
 const Detailed = () => {
   let markdown =
@@ -104,5 +105,13 @@ const Detailed = () => {
     </div>
   );
 };
-
+Detailed.getInitialProps = async () => {
+  const promise = new Promise(resolve => {
+    axios('http://127.0.0.1:10272/default/getArticleList').then(res => {
+      console.log(res);
+      resolve(res.data);
+    });
+  });
+  return await promise;
+};
 export default Detailed;
