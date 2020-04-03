@@ -7,10 +7,28 @@ import Author from '../components/Author';
 import Advert from '../components/Advert';
 import Footer from '../components/Footer';
 import '../static/style/pages/index.css';
+import marked from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
+import '../static/style/pages/detailed.css';
 import axios from 'axios';
+import servicePath from '../config/apiUrl';
 
 const Home = list => {
-  console.log(list);
+  const renderer = new marked.Renderer();
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: false,
+    smartLists: true,
+    smartypants: false,
+    highlight: function(code) {
+      return hljs.highlightAuto(code).value;
+    }
+  });
   const [mylist, setMylist] = useState(list.result);
   return (
     <div>
@@ -46,7 +64,10 @@ const Home = list => {
                     {item.view_count}人
                   </span>
                 </div>
-                <div className="list-context">{item.introduce}</div>
+                <div
+                  className="list-context"
+                  dangerouslySetInnerHTML={{ __html: item.introduce }}
+                ></div>
               </List-item>
             )}
           ></List>
@@ -63,8 +84,7 @@ const Home = list => {
 };
 Home.getInitialProps = async () => {
   const promise = new Promise(resolve => {
-    axios('http://127.0.0.1:10272/default/getArticleList').then(res => {
-      console.log('远程获取数据结果:', res.data);
+    axios(servicePath.getArticleList).then(res => {
       resolve(res.data);
     });
   });

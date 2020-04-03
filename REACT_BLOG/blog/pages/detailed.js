@@ -1,51 +1,43 @@
 import Head from 'next/head';
-import { Col, Row, List, Breadcrumb, Icon, Affix } from 'antd';
+import { Col, Row, List, Breadcrumb, Affix } from 'antd';
+import {
+  FileAddOutlined,
+  CalculatorOutlined,
+  FireOutlined
+} from '@ant-design/icons';
 import Header from '../components/Header';
 import Author from '../components/Author';
 import Advert from '../components/Advert';
 import Footer from '../components/Footer';
-import ReactMarkDown from 'react-markdown';
-import MarnNavBar from 'markdown-navbar';
-import 'markdown-navbar/dist/navbar.css';
+import marked from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
 import '../static/style/pages/detailed.css';
+import Tocity from '../components/tocify.tsx';
 import axios from 'axios';
+import servicePath from '../config/apiUrl';
 
-const Detailed = () => {
-  let markdown =
-    '# P01:课程介绍和环境搭建\n' +
-    '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
-    '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
-    '**这是加粗的文字**\n\n' +
-    '*这是倾斜的文字*`\n\n' +
-    '***这是斜体加粗的文字***\n\n' +
-    '~~这是加删除线的文字~~ \n\n' +
-    '`console.log(111)` \n\n' +
-    '# p02:来个Hello World 初始Vue3.0\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n' +
-    '***\n\n\n' +
-    '# p03:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p04:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '#5 p05:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p06:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '# p07:Vue3.0基础知识讲解\n' +
-    '> aaaaaaaaa\n' +
-    '>> bbbbbbbbb\n' +
-    '>>> cccccccccc\n\n' +
-    '``` var a=11; ```';
+const Detailed = data => {
+  const tocify = new Tocity();
+  const renderer = new marked.Renderer();
+  renderer.heading = function(text, level, raw) {
+    const anchor = tocify.add(text, level);
+    return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+  };
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: false,
+    smartLists: true,
+    smartypants: false,
+    highlight: function(code) {
+      return hljs.highlightAuto(code).value;
+    }
+  });
+  let html = marked(data.article_content);
   return (
     <div>
       <Head>
@@ -64,39 +56,34 @@ const Detailed = () => {
             </Breadcrumb>
           </div>
           <div>
-            <div className="detailed-title">
-              React实战视频教程-技术胖Blog开发(更新08集)
-            </div>
+            <div className="detailed-title">{data.title}</div>
             <div className="list-icon center">
               <span>
-                <Icon type="calendar" />
-                2020-03-22
+                <CalculatorOutlined />
+                {data.addTime}
               </span>
               <span>
-                <Icon type="folder" />
+                <FileAddOutlined />
                 视频教程
               </span>
               <span>
-                <Icon type="fire" />
+                <FireOutlined />
                 4396人
               </span>
             </div>
-            <div className="detailed-content">
-              <ReactMarkDown escapeHtml={false} source={markdown} />
-            </div>
+            <div
+              className="detailed-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            ></div>
           </div>
         </Col>
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
           <Advert />
           <Affix offsetTop={5}>
-            <div detailed-nav comm-box>
+            <div className="detailed-nav comm-box">
               <div className="nav-title">文章标题</div>
-              <MarnNavBar
-                source={markdown}
-                ordered={false}
-                className="acticle-menu"
-              />
+              {tocify && tocify.render()}
             </div>
           </Affix>
         </Col>
@@ -105,11 +92,11 @@ const Detailed = () => {
     </div>
   );
 };
-Detailed.getInitialProps = async () => {
+Detailed.getInitialProps = async context => {
+  let id = context.query.id;
   const promise = new Promise(resolve => {
-    axios('http://127.0.0.1:10272/default/getArticleList').then(res => {
-      console.log(res);
-      resolve(res.data);
+    axios(servicePath.getArticleById + id).then(res => {
+      resolve(res.data.result[0]);
     });
   });
   return await promise;
