@@ -5,7 +5,7 @@
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-module.exports = appInfo => {
+module.exports = (appInfo) => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
@@ -34,26 +34,26 @@ module.exports = appInfo => {
       // password
       password: '123456',
       // database
-      database: 'react_blog'
+      database: 'react_blog',
     },
     // load into app, default is open
     app: true,
     // load into agent, default is close
-    agent: false
+    agent: false,
   };
   config.security = {
     csrf: {
-      enable: false
+      enable: false,
     },
-    domainWhiteList: ['*']
+    domainWhiteList: ['*'],
   };
   config.cors = {
     origin: 'http://localhost:3000',
     credentials: true, //允许Cook可以跨域
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
   return {
     ...config,
-    ...userConfig
+    ...userConfig,
   };
 };
