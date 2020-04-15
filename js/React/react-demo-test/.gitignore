@@ -1,21 +1,6 @@
-*.pkg
-*.github.com
-node_modules/
-*.package.json
-*.package-lock.json
-/.vscode
-.idea　　　　
-.mvn　　　　
-.iml
-mvnw
-mvnw.cmd
-logs/
-target/
-help.md
-.project
-.settings
-.classpath
-.bin
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 /node_modules
 /.pnp
 .pnp.js

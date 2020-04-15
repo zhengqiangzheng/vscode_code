@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p::after {
+            content: "world";
+        }
+
+        div {
+            border: solid 1px #ddd;
+            width: 200px;
+        }
+
+        div>input {
+            outline: none;
+            border: none;
+        }
+
+        div>input[type="text"]+span::after {
+            content: "\293D";
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <p>hello </p>
+    <div>
+        <input type="text" /> <span></span>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1[title] {
+            color: red;
+        }
+
+        article h2:nth-child(1) {
+            color: blue;
+        }
+
+        /* 2n 偶数 2n-1奇数 -n+2 前两个 n+2 除了前两个 odd even 自己试吧  */
+        main>ul li:nth-child(-n+3):not(:nth-child(1)) {
+            color: brown;
+        }
+
+        input:checked+label {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <ul>
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+            <li>hello world</li>
+        </ul>
+        <article>
+            <h1 title>helloworld</h1>
+            <aside>
+                <h2>hello world</h2>
+            </aside>
+            <h2>hello world</h2>
+        </article>
+    </main>
+    <input type="radio" name="sex" id="man">
+    <label for="man">男</label>
+    <input type="radio" name="sex" id="woman" checked>
+    <label for="woman">女</label>
+</body>
+
+</html>
