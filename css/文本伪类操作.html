@@ -23,7 +23,21 @@
         div>input[type="text"]+span::after {
             content: "\293D";
             cursor: pointer;
+        }
 
+        p {
+            /* font-variant: small-caps; */
+            /* text-transform: uppercase; */
+            text-transform: capitalize;
+
+        }
+
+        .text {
+            margin-top: 1rem;
+            width: 20rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -32,6 +46,13 @@
     <p>hello </p>
     <div>
         <input type="text" /> <span></span>
+    </div>
+    <div class="text">
+        nihaohello nihaohello合 nihaohe
+        llo合理，
+    </div>
+    <div style="text-indent: 1em; font-size: 20px;">
+        测试文本缩进
     </div>
 
 </body>
