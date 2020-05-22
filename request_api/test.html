@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/axios/0.19.2/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="handleClick()">click me</button>
+    // test api :https://blog.csdn.net/c__chao/article/details/78573737
+</body>
+<script>
+    let handleClick = () => {
+        axios.get('https://api.apiopen.top/getSingleJoke?sid=28654780').then((result) => {
+            console.log(result);
+        })
+    }
+</script>
+
+</html>
