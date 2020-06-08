@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <h2>{{userName}}</h2>
+        <h3 v-if="isVip">用户类型:vip</h3>
+        <h3 v-else>用户类型:普通用户</h3>
+        <hr>
+        <h3 v-if="age>19">成年人</h3>
+        <h3 v-else-if="age>12">青少年</h3>
+        <h3 v-else>小孩</h3>
+        <hr>
+        <ul>
+            <li v-for="item,index in stars" :key="index" @click="handleClick(index,item,$event)">{{item}}</li>
+        </ul>
+        <hr>
+        <h2>复选框</h2>
+        <span v-for="item,index in fruits" :key="item">
+            {{item}}
+            <input type="checkbox" name="fruit" id="" :value="item" v-model="checkFruits">
+        </span>
+        <h2>{{checkFruits}}</h2>
+
+        <h2>单选框</h2>
+        <span v-for="item,index in fruits" :key="index">
+            {{item}}
+            <input type="radio" name="zfruit" id="" :value="item" v-model="radioFruits">
+        </span>
+        <h2>{{radioFruits}}</h2>
+        <h2>select 选项框</h2>
+        <select name="" id="" v-model="chooseOption">
+            <option v-for="item in citys" :value="item">{{item}}</option>
+        </select>
+        <p>{{chooseOption}}</p>
+
+        <h2>select 选项框 多选框</h2>
+        <select name="" id="" v-model="moreOption" multiple>
+            <option v-for="item in citys" :value="item">{{item}}</option>
+        </select>
+        <p>{{moreOption}}</p>
+
+
+    </div>
+</body>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            isVip: true,
+            userName: "小明",
+            msg: "message",
+            age: 24,
+            stars: ['zs', 'ls', 'ww'],
+            fruits: ['apple', 'banana', 'pea', 'peach'],
+            checkFruits: [],
+            radioFruits: '',
+            citys: ["北京", "上海", "深圳"],
+            chooseOption: "北京",
+            moreOption: ["北京"]
+        },
+        methods: {
+            handleClick(item, index, event) {
+                console.log(item);
+                console.log(index);
+                console.log(event);
+            }
+        }
+    })
+
+</script>
+
+</html>

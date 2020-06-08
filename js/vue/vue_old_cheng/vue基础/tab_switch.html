@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3 v-if="tab==1">首页</h3>
+        <h3 v-if="tab==2">列表页</h3>
+        <h3 v-if="tab==3">详情页</h3>
+        <h3 v-once>{{msg}}</h3>
+        <button @click="handleBtnClick" data-id="1">切换首页</button>
+        <button @click="handleBtnClick" data-id="2">切换列表</button>
+        <button @click="handleBtnClick" data-id="3">切换详情</button>
+        
+
+    </div>
+
+</body>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            tab: 1,
+            msg: "only once"
+        },
+        methods: {
+            handleBtnClick(e) {
+                console.log(e.target.dataset.id);
+                this.tab = e.target.dataset.id;
+            }
+        }
+
+    })
+</script>
+
+</html>

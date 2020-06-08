@@ -20,6 +20,10 @@
       <component :is="currentComponent"></component>
     </keep-alive>
     <button @click="changeComponent">changeComponent</button>
+    <!-- 读取 根元素的 信息 -->
+    <h4>{{$root.msg}}</h4>
+    <input v-focus type="text" />
+    <p v-red>局部自定义指令</p>
   </div>
 </template>
 
@@ -28,7 +32,7 @@ import HelloWorld from "./components/HelloWorld";
 import MyComponent from "./components/MyComponent";
 import ComponentA from "./components/ComponentA";
 // import ComponentB from "./components/ComponentB";
-// 异步引入组件 组件内容 很多时这样使用 
+// 异步引入组件 组件内容 很多时这样使用
 const ComponentB = () => import("./components/ComponentB");
 export default {
   name: "App",
@@ -53,6 +57,13 @@ export default {
         this.currentComponent = "ComponentB";
       } else {
         this.currentComponent = "ComponentA";
+      }
+    }
+  },
+  directives: {
+    red: {
+      inserted(el) {
+        el.style.color = "red";
       }
     }
   }
