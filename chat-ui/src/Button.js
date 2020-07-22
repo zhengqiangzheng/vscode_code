@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-function Button({ onClick, label, children }) {
+const StyleButton = styled.div`
+  width: ${(props) => props.width || '80px'};
+  background-color: ${({ theme }) => theme.primaryColor};
+`;
+
+function Button({ width, onClick, label, children }) {
   return (
-    <div>
+    <StyleButton width={width}>
       <button onClick={onClick}>{label}</button>
       {/* 相当于插槽 */}
       {children}
-    </div>
+    </StyleButton>
   );
 }
 export default Button;
