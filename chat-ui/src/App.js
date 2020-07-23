@@ -24,6 +24,7 @@ function App() {
         <span>&gt;</span>
       </Button>
       <Button label="按钮2" onClick={handleClick2}>
+        {/* children内容 */}
         <span>&gt;</span>
       </Button>
       <p style={{ color }}>color change</p>

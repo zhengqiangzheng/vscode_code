@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+// style components
 const StyleButton = styled.div`
   width: ${(props) => props.width || '80px'};
   background-color: ${({ theme }) => theme.primaryColor};
