@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import face1 from '../../assets/images/face-male-1.jpg';
 import StyledAvatar, { StatusIcon, AvatarImage, AvatarClip } from './style';
 // propTypes 检查props 的属性
 function Avatar({

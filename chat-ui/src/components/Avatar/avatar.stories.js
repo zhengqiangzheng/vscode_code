@@ -1,14 +1,14 @@
 import Avatar from '.';
 import React from 'react';
-import '../../story.css';
+import 'story.css';
 export default {
   title: 'Avatar',
   component: Avatar,
 };
-import face1 from '../../assets/images/face-male-1.jpg';
-import face2 from '../../assets/images/face-male-2.jpg';
-import face3 from '../../assets/images/face-male-3.jpg';
-import face4 from '../../assets/images/face-male-4.jpg';
+import face1 from 'assets/images/face-male-1.jpg';
+import face2 from 'assets/images/face-male-2.jpg';
+import face3 from 'assets/images/face-male-3.jpg';
+import face4 from 'assets/images/face-male-4.jpg';
 export const Default = () => {
   return (
     <div className="row-elements">
