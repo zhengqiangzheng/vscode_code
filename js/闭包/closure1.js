@@ -5,15 +5,18 @@ function createClosure() {
   };
 }
 const fn = createClosure();
+fn();
+
 function f(fn, x) {
   if (x < 1) {
     f(g, 1);
   } else {
-    fn();
+    let x = fn();
+    console.log(x);
   }
   function g() {
     console.log(x);
   }
 }
 function h() {}
-f(h, 0);
+var x = f(h, -1);
