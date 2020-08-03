@@ -13,7 +13,7 @@ export const Default = () => <Badge count={5}></Badge>;
 export const DotVariant = () => {
   return (
     <Badge show variant="dot">
-      <FontAwesomeIcon icon={faCommentDots} style={{ fontSize: '24px' }} />
+      <FontAwesomeIcon icon={faCommentDots} style={{ fontSize: '50px' }} />
     </Badge>
   );
 };
