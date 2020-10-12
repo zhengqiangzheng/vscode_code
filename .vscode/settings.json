@@ -1,5 +1,5 @@
 {
     "git.ignoreLimitWarning": true,
     "debug.node.autoAttach": "on",
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "autopep8"
 }
