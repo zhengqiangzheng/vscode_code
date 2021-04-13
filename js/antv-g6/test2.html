@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tutorial Demo</title>
+</head>
+
+<body>
+    /* 图的画布容器 */
+    <div id="mountNode"></div>
+    /* 引入 G6 */
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
+    <script>
+        // 定义数据源
+        const data = {
+            nodes: [
+                {
+                    x: 100,
+                    y: 100,
+                    size: [180, 20],
+                    label: 'rect',
+                    type: 'rect',
+                    style: {
+                        // 仅在 keyShape 上生效
+                        fill: 'lightblue',
+                        stroke: '#888',
+                        lineWidth: 2,
+                        radius: 7,
+                    },
+                    linkPoints: {
+                        top: true,
+                        bottom: true,
+                        left: true,
+                        right: true,
+                        // ... 四个圆的样式可以在这里指定
+                    },
+                    // labelCfg: {...} // 标签的样式可以在这里指定
+                },
+            ],
+        };
+        const graph = new G6.Graph({
+            container: 'mountNode',
+            width: 500,
+            height: 300,
+            nodeStateStyles: {
+                // 各状态下的样式，平铺的配置项仅在 keyShape 上生效。需要在其他 shape 样式上响应状态变化则写法不同，参见上文提到的 配置状态样式 链接
+                hover: {
+                    fillOpacity: 0.1,
+                    lineWidth: 10,
+                },
+            },
+        });
+        graph.data(data);
+        graph.render();
+        // 监听鼠标进入节点事件
+        graph.on('node:mouseenter', (evt) => {
+            const node = evt.item;
+            // 激活该节点的 hover 状态
+            graph.setItemState(node, 'hover', true);
+        });
+        // 监听鼠标离开节点事件
+        graph.on('node:mouseleave', (evt) => {
+            const node = evt.item;
+            // 关闭该节点的 hover 状态
+            graph.setItemState(node, 'hover', false);
+        });
+    </script>
+</body>
+
+</html>
