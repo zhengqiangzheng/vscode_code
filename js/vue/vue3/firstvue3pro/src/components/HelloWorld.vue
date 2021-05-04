@@ -1,18 +1,27 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <button @click="data.counter++">count is:</button>
+    <button @click="counter++">count is:</button>
     <p>
       {{ counter }}
     </p>
     <p>
       {{ doublecounter }}
     </p>
+    <p ref="desc"></p>
   </div>
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted, reactive, ref, toRefs } from "vue";
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  toRefs,
+  watch,
+} from "vue";
 export default {
   name: "HelloWorld",
   props: {
@@ -21,7 +30,20 @@ export default {
   setup() {
     const { counter, doublecounter } = userCounter();
     const msg2 = ref("some message");
-    return { counter, doublecounter, msg2 };
+    //使用元素引用
+    const desc = ref(null);
+    // 侦听器
+    watch(counter, (val, oldVal) => {
+      const p = desc.value;
+      p.textContent = `counter change form ${oldVal} to ${val}`;
+    });
+
+    // watch(counter, (val, oldVal) => {
+    //   const p = desc.value;
+    //   p.textContent = `counter change form ${oldVal} to ${val}`;
+    // });
+
+    return { counter, doublecounter, msg2, desc };
   },
 };
 function userCounter() {
